@@ -1,0 +1,19 @@
+version: "3.7"
+
+services: 
+    newsapi:
+        build: ./newsapi
+        container_name: newsapi
+        restart: always
+        environment: 
+            - API_key='78e38455f729433993998925f7104f5f'
+        expose:
+            - 8080
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        depends_on: 
+            - newsapi
+        restart: always
+        ports: 
+            - '80:80'
